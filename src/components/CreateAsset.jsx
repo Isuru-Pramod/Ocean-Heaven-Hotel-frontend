@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getContract } from "../services/contract";
+import { ethers } from "ethers";
 
 function CreateAsset() {
   const [name, setName] = useState("");

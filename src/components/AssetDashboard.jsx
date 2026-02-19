@@ -14,12 +14,15 @@ function AssetDashboard() {
     fetchAsset();
   }, [assetId]);
 
+   
+
   return (
     <div>
       <h2>Asset Dashboard</h2>
       <input value={assetId} onChange={e => setAssetId(e.target.value)} />
 
       {asset && (
+        console.log(asset),
         <div>
           <p>Name: {asset.name}</p>
           <p>Location: {asset.location}</p>
