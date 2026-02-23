@@ -11,9 +11,8 @@ function App() {
   const [assets, setAssets] = useState([]);        // start with empty array
   const [listings, setListings] = useState([]);
 
-  // ==============================
   // CONNECT METAMASK
-  // ==============================
+
   const connectWallet = async () => {
     if (!window.ethereum) {
       alert("Install MetaMask");
@@ -28,9 +27,7 @@ function App() {
     }
   };
 
-  // ==============================
   // LOGIN
-  // ==============================
   const login = async () => {
     try {
       const res = await axios.post(`${API}/auth/login`, {
@@ -45,9 +42,7 @@ function App() {
     }
   };
 
-  // ==============================
   // ASSET FUNCTIONS
-  // ==============================
   const createAsset = async () => {
     try {
       const res = await axios.post(
@@ -71,14 +66,14 @@ function App() {
 
   const updateAsset = async (asset_id) => {
     try {
-      const res = await axios.post(
+      const res = await axios.put(
         `${API}/asset/update`,
         {
           asset_id,
-          name: "Updated Tower",
+          name: "Updated Tower for testing",
           location: "Colombo",
-          description: "Updated description",
-          image_url: "https://YOUR_SUPABASE_IMAGE_URL",
+          description: "Updated description for test",
+          image_url: "https://hrarchz.com/wp-content/uploads/2021/12/01-1-1200x675.jpg",
           share_price: ethers.parseEther("0.015").toString()
         },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -89,6 +84,7 @@ function App() {
       setResponse("Update asset failed: " + (e.response?.data?.message || e.message));
     }
   };
+
 
   const deleteAsset = async (asset_id) => {
     try {
@@ -103,9 +99,8 @@ function App() {
     }
   };
 
-  // ==============================
   // PRIMARY MARKET FUNCTIONS
-  // ==============================
+
   const buyPrimary = async (asset_id, amount, price_per_share) => {
     try {
       const totalValue = BigInt(amount) * BigInt(price_per_share);
@@ -120,9 +115,8 @@ function App() {
     }
   };
 
-  // ==============================
   // MARKETPLACE FUNCTIONS
-  // ==============================
+
   const sellShares = async (asset_id, amount, price_per_share) => {
     try {
       const res = await axios.post(
@@ -150,7 +144,7 @@ function App() {
     }
   };
 
-  // ==============================
+
   // SIGN TRANSACTION
   // ==============================
   const signTransaction = async (tx, value = 0n) => {
@@ -247,7 +241,7 @@ function App() {
       <hr />
 
       <h2>View Data</h2>
-      <button onClick={() => viewAsset(1)}>View Asset #1</button>
+      <button onClick={() => viewAsset(1)}>View Asset #1</button> 
       <button onClick={() => viewListing(1)}>View Listing #1</button>
 
       <hr />
